@@ -56,7 +56,7 @@ public class TimeTestProxy {
 	 */
 	public static void main(String[] args) throws InterruptedException {
 		Inter real = new Real();
-		Inter proxy = (Inter) Proxy.newProxyInstance(Inter.class.getClassLoader(), new Class<?>[] { Inter.class },
+		Inter proxy = (Inter) Proxy.newProxyInstance(real.getClass().getClassLoader(), real.getClass().getInterfaces(),
 				new TimeProxy(real));
 		String string = proxy.doSomething();
 		System.out.println(string);
