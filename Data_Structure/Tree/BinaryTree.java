@@ -61,7 +61,27 @@ public class BinaryTree {
 	}
 	
 	/*
-	 * ÖĞĞò±éÀú¶ş²æÅÅĞòÊ÷
+	 * æŸ¥æ‰¾äºŒå‰æ ‘ä¸­æ˜¯å¦å­˜åœ¨æŸdataå€¼
+	 */
+	private boolean isHas(int data,Node root) {
+		if (root == null) {
+			return false;
+		}
+		if (data ==	root.data) {
+			return true;
+		}else if (data < root.data) {
+			return isHas(data, root.leftChild);
+		}else {
+			return isHas(data, root.rightChild);
+		}
+	}
+	
+	public boolean isHas(int data) {
+		return isHas(data,root);
+	}
+	
+	/*
+	 * ä¸­åºéå†äºŒå‰æ’åºæ ‘
 	 */
 	public static void inOrder(Node root) {
 		if (root == null) {
@@ -77,7 +97,7 @@ public class BinaryTree {
 	}
 	
 	/*
-	 * ÏÈĞò±éÀú¶ş²æÅÅĞòÊ÷
+	 * å…ˆåºéå†äºŒå‰æ’åºæ ‘
 	 */
 	public static void preOrder(Node root) {
 		if (root == null) {
@@ -93,7 +113,7 @@ public class BinaryTree {
 	}
 	
 	/*
-	 * ºóĞò±éÀú¶ş²æÅÅĞòÊ÷
+	 * ååºéå†äºŒå‰æ’åºæ ‘
 	 */
 	public static void postOrder(Node root) {
 		if (root == null) {
@@ -121,6 +141,8 @@ public class BinaryTree {
 			binaryTree.insert(i);
 		}
 		binaryTree.inOrder();
+		System.out.println(binaryTree.isHas(11));
+		System.out.println(binaryTree.isHas(4));
 	}
 
 }
