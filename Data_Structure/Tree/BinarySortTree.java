@@ -58,6 +58,7 @@ public class BinarySortTree {
 			}
 		}
 	}
+
 	/*
 	 * 根据data值返回二叉树中对应的节点
 	 */
@@ -67,25 +68,25 @@ public class BinarySortTree {
 		}
 		if (data == root.data) {
 			return root;
-		}else if (data < root.data) {
+		} else if (data < root.data) {
 			return getNode(data, root.leftChild);
-		}else {
+		} else {
 			return getNode(data, root.rightChild);
 		}
 	}
-	
+
 	private Node getNode(int data) {
-		return getNode(data,root);
+		return getNode(data, root);
 	}
+
 	/*
 	 * 根据二叉树中的节点返回二叉树中对应的父节点
 	 */
 	private Node getParentNode(Node node) {
-		Node current,parent;
-		if (node == null||node == root) {
+		Node current, parent;
+		if (node == null || node == root) {
 			return null;
-		}
-		else {
+		} else {
 			current = root;
 			while (true) {
 				if (node.data < current.data) {
@@ -94,7 +95,7 @@ public class BinarySortTree {
 					if (current == node) {
 						return parent;
 					}
-				}else {
+				} else {
 					parent = current;
 					current = current.rightChild;
 					if (current == node) {
@@ -104,11 +105,11 @@ public class BinarySortTree {
 			}
 		}
 	}
-	
+
 	/*
 	 * 返回node节点的左子树中最大的那个节点
-	 */	
-	
+	 */
+
 	private Node getLeftMaxNode(Node node) {
 		Node max = node.leftChild;
 		if (max == null) {
@@ -117,53 +118,72 @@ public class BinarySortTree {
 		while (true) {
 			if (max.rightChild == null) {
 				return max;
-			}else {
+			} else {
 				max = max.rightChild;
 			}
 		}
 	}
-	
+
 	public void delete(int data) {
 		delete(getNode(data));
 	}
-	
+
 	public void delete(Node node) {
-		Node temp,max = null;
+		Node temp, max = null;
+		if (node == null) {
+			return;
+		}
 		Node parent = getParentNode(node);
-		
-		if (node.leftChild == null && node.rightChild == null) {
-			if(parent.leftChild == node){
-				parent.leftChild = null;
-			}else {
-				parent.rightChild = null;
+
+		if (parent != null) {
+			if (node.leftChild == null && node.rightChild == null) {
+				if (parent.leftChild == node) {
+					parent.leftChild = null;
+				} else {
+					parent.rightChild = null;
+				}
+			} else if (node.leftChild == null) {
+				if (parent.leftChild == node) {
+					parent.leftChild = node.rightChild;
+				} else {
+					parent.rightChild = node.rightChild;
+				}
+			} else if (node.rightChild == null) {
+				if (parent.leftChild == node) {
+					parent.leftChild = node.leftChild;
+				} else {
+					parent.rightChild = node.leftChild;
+				}
+			} else {
+				max = getLeftMaxNode(node);
+				if (parent.leftChild == node) {
+					delete(max);
+					parent.leftChild = max;
+					max.leftChild = node.leftChild;
+					max.rightChild = node.rightChild;
+				} else {
+					delete(max);
+					parent.rightChild = max;
+					max.leftChild = node.leftChild;
+					max.rightChild = node.rightChild;
+				}
 			}
-		}else if (node.leftChild == null) {
-			if(parent.leftChild == node){
-				parent.leftChild = node.rightChild;
-			}else {
-				parent.rightChild = node.rightChild;
-			}
-		}else if (node.rightChild == null) {
-			if(parent.leftChild == node){
-				parent.leftChild = node.leftChild;
-			}else {
-				parent.rightChild = node.leftChild;
-			}
-		}else {
-			max = getLeftMaxNode(node);
-			if(parent.leftChild == node){
+		} else {
+			if (node.leftChild == null && node.rightChild == null) {
+				root = null;
+			} else if (node.leftChild == null) {
+				root = node.rightChild;
+			} else if (node.rightChild == null) {
+				root = node.rightChild;
+			} else {
+				max = getLeftMaxNode(node);
 				delete(max);
-				parent.leftChild = max;
-				max.leftChild = node.leftChild;
-				max.rightChild = node.rightChild;
-			}else {
-				delete(max);
-				parent.rightChild = max;
+				root = max;
 				max.leftChild = node.leftChild;
 				max.rightChild = node.rightChild;
 			}
 		}
-		
+
 	}
 
 	/*
@@ -252,7 +272,7 @@ public class BinarySortTree {
 		System.out.println(binaryTree.isHas(4));
 		System.out.println(binaryTree.getParentNode(binaryTree.getNode(9)).data);
 		System.out.println(binaryTree.getLeftMaxNode(binaryTree.getNode(8)).data);
-		binaryTree.delete(8);
+		binaryTree.delete(2);
 		binaryTree.inOrder();
 	}
 
