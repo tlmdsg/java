@@ -3,6 +3,7 @@
  */
 package ByteUtil;
 
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 
@@ -30,6 +31,21 @@ public class ByteUtil {
 		result[0] = (byte)((i >> 24) & 0xFF);
 		return result;
 	}
+	
+	//byte 数组与 long 的相互转换 
+	public static long bytesToLong(byte[] bytes) {
+		ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
+		return byteBuffer.getLong();
+	}
+	
+	public static byte[] longToBytes(long i) {
+		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(8);
+		byte[] bytes = new byte[8];
+		byteBuffer.putLong(i).flip();
+		byteBuffer.get(bytes);
+		return bytes;
+	}
+	
 	//byte 转为字符串的 bit 
 	public static String byteToBit(byte b) {  
         return ""  
@@ -53,9 +69,15 @@ public class ByteUtil {
 		for (byte b : bytes) {
 			System.out.print(byteToBit(b) +" ");
 		}
-		
 		System.out.println(bytesToInt(bytes));
+
+		bytes = longToBytes(256);
+		System.out.println(bytes);
+		System.out.println(Arrays.toString(bytes));
+		for (byte b : bytes) {
+			System.out.print(byteToBit(b) +" ");
+		}
+		System.out.println(bytesToLong(bytes));
 		
-		System.out.println((byte)250);
 	}
 }
