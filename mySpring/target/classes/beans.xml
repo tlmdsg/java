@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="gbk"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"
+	default-init-method="init" default-destroy-method="close">
+
+	<!-- 定义第一个Bean实例：axe -->
+	<bean id="axe" class="com.lm.mySpring.Axe" />
+
+	<!-- 定义第二个Bean实例：person -->
+	<bean id="person" class="com.lm.mySpring.Person">
+		<property name="axe" ref="axe"></property>
+	</bean>
+	
+	<bean class="com.lm.mySpring.MyBeanPostProcessor"></bean>
+
+</beans>
