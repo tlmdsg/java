@@ -1,0 +1,57 @@
+/**
+ * 
+ */
+package Index_24;
+
+/**
+ * @author tlm
+ * @leetcode : 24. Swap Nodes in Pairs
+ */
+public class Solution {
+
+	public static class ListNode {
+		int val;
+		ListNode next;
+
+		ListNode(int x) {
+			val = x;
+		}
+	}
+
+	public ListNode swapPairs(ListNode head) {
+		if (head == null || head.next == null) {
+			return head;
+		}
+		ListNode tmp_head, tmp_next;
+		tmp_head = head;
+		tmp_next = head.next.next;
+		head = head.next;
+		head.next = tmp_head;
+		head.next.next = swapPairs(tmp_next);
+		return head;
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Solution solution = new Solution();
+		ListNode head1 = new ListNode(1);
+		head1.next = new ListNode(3);
+		head1.next.next = new ListNode(5);
+
+		ListNode head2 = new ListNode(2);
+		head2.next = new ListNode(4);
+		head2.next.next = new ListNode(8);
+		head2.next.next.next = new ListNode(8);
+		ListNode head = solution.swapPairs(head1);
+		System.out.println(head.val);
+		while (head.next != null) {
+			head = head.next;
+			System.out.println(head.val);
+		}
+		System.out.println();
+	}
+
+}
