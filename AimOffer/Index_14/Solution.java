@@ -48,6 +48,27 @@ public class Solution {
 		return result;
 	}
 
+	public ListNode FindKthToTailN(ListNode head, int k) {
+		if (head == null || k == 0) {
+			return null;
+		}
+		ListNode first = head;
+		ListNode second = head;
+		int count = 1;
+		while (first.next != null) {
+			first = first.next;
+			if (count != k) {
+				count++;
+			} else {
+				second = second.next;
+			}
+		}
+		if (count != k) {
+			return null;
+		}
+		return second;
+	}
+
 	/**
 	 * @param args
 	 */

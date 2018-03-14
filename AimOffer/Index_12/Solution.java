@@ -34,12 +34,31 @@ public class Solution {
 		return exponent > 0 ? result : 1 / result;
 	}
 
+	public double PowerN(double base, int exponent) {
+		int e;
+		if (exponent == 0) {
+			return 1;
+		} else if (exponent > 0) {
+			e = exponent;
+		} else {
+			if (base == 0) {
+				throw new RuntimeException("余数不能为0");
+			}
+			e = -exponent;
+		}
+		double result = 1;
+		for (int i = 0; i < e; i++) {
+			result = result * base;
+		}
+		return exponent > 0 ? result : 1 / result;
+	}
+
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		Solution solution = new Solution();
-		System.out.println();
+		System.out.println(solution.PowerN(2, -3));
 	}
 
 }

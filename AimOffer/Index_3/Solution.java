@@ -24,7 +24,7 @@ class ListNode {
 public class Solution {
 
 	public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
-//		ArrayList<Integer> result = new ArrayList<>();
+		// ArrayList<Integer> result = new ArrayList<>();
 		if (listNode == null) {
 			return new ArrayList<>();
 		}
@@ -32,6 +32,22 @@ public class Solution {
 		while (listNode != null) {
 			result.addFirst(listNode.val);
 			listNode = listNode.next;
+		}
+		return new ArrayList<>(result);
+	}
+
+	public ArrayList<Integer> printListFromTailToHeadN(ListNode listNode) {
+		if (listNode == null) {
+			return new ArrayList<>();
+		}
+		LinkedList<Integer> result = new LinkedList<>();
+		while (true) {
+			result.addFirst(listNode.val);
+			if (listNode.next == null) {
+				break;
+			}else {
+				listNode = listNode.next;
+			}
 		}
 		return new ArrayList<>(result);
 	}

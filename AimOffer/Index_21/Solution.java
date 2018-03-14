@@ -42,7 +42,28 @@ public class Solution {
 			}
 			result.add(curr.val);
 		}
+		queue.add(null);
 		return result;
+	}
+
+	public ArrayList<Integer> PrintFromTopToBottomN(TreeNode root) {
+		if (root == null) {
+			return new ArrayList<>();
+		}
+		LinkedList<Integer> result = new LinkedList<>();
+		Queue<TreeNode> queue = new LinkedList<>();
+		queue.offer(root);
+		while (!queue.isEmpty()) {
+			TreeNode tmp = queue.poll();
+			result.add(tmp.val);
+			if (tmp.left != null) {
+				queue.offer(tmp.left);
+			}
+			if (tmp.right != null) {
+				queue.offer(tmp.right);
+			}
+		}
+		return new ArrayList<>(result);
 	}
 
 	/**
@@ -50,7 +71,7 @@ public class Solution {
 	 */
 	public static void main(String[] args) {
 		Solution solution = new Solution();
-		System.out.println();
+		System.out.println(solution.PrintFromTopToBottom(new TreeNode(1)));
 	}
 
 }

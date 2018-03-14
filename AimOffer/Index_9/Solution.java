@@ -33,6 +33,27 @@ public class Solution {
 		return result[target];
 	}
 
+	public int JumpFloorII(int target) {
+		if (target == 0) {
+			return 0;
+		}
+		if (target == 1) {
+			return 1;
+		}
+		if (target == 2) {
+			return 2;
+		}
+		int[] result = new int[target + 1];
+		result[0] = 1;
+		result[1] = 1;
+		int sum = 2;
+		for (int i = 2; i <= target; i++) {
+			result[i] = sum;
+			sum = sum + result[i];
+		}
+		return result[target];
+	}
+
 	/**
 	 * @param args
 	 */

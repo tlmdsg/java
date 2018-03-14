@@ -35,7 +35,9 @@ public class Solution {
 		for (Integer integer : stack) {
 			m = integer < m ? integer : m;
 		}
+		// return Collections.min(list);
 		return m;
+
 	}
 
 	/**

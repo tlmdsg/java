@@ -17,7 +17,7 @@ public class Solution {
 		if (n == 0) {
 			return 0;
 		}
-		if (n<=2) {
+		if (n <= 2) {
 			return 1;
 		}
 		int result[] = new int[n + 1];
@@ -30,12 +30,24 @@ public class Solution {
 		return result[n];
 	}
 
+	public int FibonacciN(int n) {
+		if (n == 0) {
+			return 0;
+		}
+		if (n == 1 || n == 2) {
+			return 1;
+		} else {
+			return FibonacciN(n - 1) + FibonacciN(n - 2);
+		}
+	}
+
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		Solution solution = new Solution();
-		System.out.println(solution.Fibonacci(3));
+		System.out.println(solution.Fibonacci(39));
+		System.out.println(solution.FibonacciN(39));
 	}
 
 }

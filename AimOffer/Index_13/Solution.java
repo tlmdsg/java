@@ -4,6 +4,8 @@
 package Index_13;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+
 
 /**
  * @author tlm
@@ -32,6 +34,26 @@ public class Solution {
 			}
 		}
 		System.out.println(Arrays.toString(array));
+	}
+
+	public void reOrderArrayN(int[] array) {
+		if (array == null || array.length <= 1) {
+			return;
+		}
+		LinkedList<Integer> single = new LinkedList<>();
+		LinkedList<Integer> odd = new LinkedList<>();
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] % 2 != 0) {
+				single.add(array[i]);
+			} else {
+				odd.add(array[i]);
+			}
+		}
+		single.addAll(odd);
+		for (int i = 0; i < array.length; i++) {
+			array[i] = single.get(i);
+		}
+		return;
 	}
 
 	/**

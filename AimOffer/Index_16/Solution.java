@@ -27,9 +27,10 @@ public class Solution {
 		}
 		if (isRootSubtree(rootA, rootB)) {
 			return true;
-		} else {
+		} else if (rootA != null) {
 			return HasSubtree(rootA.left, rootB) || HasSubtree(rootA.right, rootB);
 		}
+		return false;
 	}
 
 	public boolean isRootSubtree(TreeNode treeA, TreeNode treeB) {
