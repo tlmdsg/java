@@ -45,7 +45,7 @@ public class Solution {
 	 */
 	public static void main(String[] args) {
 		Solution solution = new Solution();
-		System.out.println(solution.PrintMinNumber(new int[] { 3, 32, 321 }));
+		System.out.println(solution.PrintMinNumber(new int[]{ 3, 32, 321 }));
 	}
 
 }

@@ -5,7 +5,7 @@ package Index_9;
 
 /**
  * @author tlm
- * @leetcode : 9. Palindrome Number
+ * @leetcode : 9. Palindrome(╩ьнд) Number
  */
 public class Solution {
 

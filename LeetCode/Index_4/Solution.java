@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 /**
  * @author tlm
- * @leetcode : 4. Median of Two Sorted Arrays
+ * @leetcode : 4. Median(ÖÐÎ»Êý) of Two Sorted Arrays
  */
 public class Solution {
 	

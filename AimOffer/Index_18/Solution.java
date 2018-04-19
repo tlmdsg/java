@@ -4,7 +4,6 @@
 package Index_18;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * @author tlm
@@ -16,7 +15,41 @@ import java.util.Collections;
 public class Solution {
 
 	public ArrayList<Integer> printMatrix(int[][] matrix) {
-		return new ArrayList<>();
+		if (matrix == null) {
+			return new ArrayList<>();
+		}
+		int m = matrix.length;
+		int n = matrix[0].length;
+		int circle = getCircle(m, n);
+		ArrayList<Integer> result = new ArrayList<>();
+		for (int i = 0; i < circle; i++) {
+			for (int j = i; j < n - i; j++) {
+				result.add(matrix[i][j]);
+			}
+			for (int j = i + 1; j < m - i; j++) {
+				result.add(matrix[j][n - 1 - i]);
+			}
+			for (int j = n - 2 - i; j >= i; j--) {
+				if (m - 1 - i != i) {
+					result.add(matrix[m - 1 - i][j]);
+				}
+			}
+			for (int j = m - 2 - i; j > i; j--) {
+				if (n - 1 - i != i) {
+					result.add(matrix[j][i]);
+				}
+			}
+		}
+		return result;
+	}
+
+	public int getCircle(int m, int n) {
+		int min = m < n ? m : n;
+		if ((min & 1) == 0) {
+			return min / 2;
+		} else {
+			return min / 2 + 1;
+		}
 	}
 
 	/**
@@ -34,12 +67,11 @@ public class Solution {
 		for (Integer integer : re1) {
 			System.out.print(integer + " ");
 		}
-		// System.out.println("$$$$$$$$");
-		// ArrayList<Integer> re2 = solution.printMatrix1(new int[][] { { 1, 2 }
-		// });
-		// for (Integer integer : re2) {
-		// System.out.print(integer + " ");
-		// }
+		System.out.println("$$$$$$$$");
+		ArrayList<Integer> re2 = solution.printMatrix(new int[][] { { 1, 2, 3, 4, 5, 6 } });
+		for (Integer integer : re2) {
+			System.out.print(integer + " ");
+		}
 	}
 
 }
