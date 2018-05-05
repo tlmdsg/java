@@ -61,6 +61,7 @@ public class GetLastRemaining {
 		return remaining.getFirst();
 	}
 
+	// 编号从1到n
 	public static int getLastRemaining2(int n, int m) {
 		if (n == 0 || m == 0) {
 			return -1;
@@ -68,13 +69,26 @@ public class GetLastRemaining {
 		if (n == 1) {
 			return 1;
 		}
-		return (getLastRemaining(n - 1, m) + m - 1) % n + 1;
+		int result = (getLastRemaining(n - 1, m) + m) % (n + 1);
+		return result != 0 ? result : result + 1;
+	}
+
+	// 编号从0到n-1
+	public static int getLastRemaining3(int n, int m) {
+		if (n == 0 || m == 0) {
+			return -1;
+		}
+		if (n == 1) {
+			return 0;
+		}
+		return (getLastRemaining3(n - 1, m) + m) % n;
 	}
 
 	public static void main(String[] args) {
-		System.out.println(getLastRemaining(3, 3));
-		System.out.println(getLastRemaining1(3, 3));
-		System.out.println(getLastRemaining2(3, 3));
+		System.out.println(getLastRemaining(55, 3));
+		System.out.println(getLastRemaining1(55, 3));
+		System.out.println(getLastRemaining2(55, 3));
+		System.out.println(getLastRemaining3(55, 3) + 1);
 	}
 
 }
