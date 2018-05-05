@@ -69,8 +69,7 @@ public class GetLastRemaining {
 		if (n == 1) {
 			return 1;
 		}
-		int result = (getLastRemaining(n - 1, m) + m) % (n + 1);
-		return result != 0 ? result : result + 1;
+		return (getLastRemaining(n - 1, m) + m - 1) % n + 1;
 	}
 
 	// ±àºÅ´Ó0µ½n-1
@@ -85,10 +84,11 @@ public class GetLastRemaining {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(getLastRemaining(55, 3));
-		System.out.println(getLastRemaining1(55, 3));
-		System.out.println(getLastRemaining2(55, 3));
-		System.out.println(getLastRemaining3(55, 3) + 1);
+		System.out.println(getLastRemaining(848, 5));
+		System.out.println(getLastRemaining1(848, 5));
+		System.out.println(getLastRemaining2(848, 5));
+		System.out.println(getLastRemaining3(848, 5) + 1);
+
 	}
 
 }
