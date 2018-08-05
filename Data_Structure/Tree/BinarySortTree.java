@@ -1,6 +1,8 @@
 
 package Tree;
 
+import java.util.Stack;
+
 class Node {
 	int data;
 	Node leftChild;
@@ -218,8 +220,25 @@ public class BinarySortTree {
 		inOrder(root.rightChild);
 	}
 
+	public static void inOrderByStack(Node root) {
+		Node curr = root;
+		Stack<Node> stack = new Stack<Node>();
+		while (curr != null || !stack.isEmpty()) {
+			while (curr != null) {
+				stack.push(curr);
+				curr = curr.leftChild;
+			}
+			if (!stack.isEmpty()) {
+				curr = stack.pop();
+				System.out.println(curr.data);
+				curr = curr.rightChild;
+			}
+		}
+	}
+
 	public void inOrder() {
 		inOrder(this.root);
+		inOrderByStack(this.root);
 	}
 
 	/*
@@ -234,8 +253,24 @@ public class BinarySortTree {
 		preOrder(root.rightChild);
 	}
 
+	public static void preOrderByStack(Node root) {
+		Node curr = root;
+		Stack<Node> stack = new Stack<Node>();
+		while (curr != null || !stack.isEmpty()) {
+			while (curr != null) {
+				System.out.println(curr.data);
+				stack.push(curr);
+				curr= curr.leftChild;
+			}
+			if (!stack.isEmpty()) {
+				curr = stack.pop().rightChild;
+			}
+		}
+	}
+
 	public void preOrder() {
 		preOrder(this.root);
+		preOrderByStack(this.root);
 	}
 
 	/*
@@ -268,12 +303,13 @@ public class BinarySortTree {
 			binaryTree.insert(i);
 		}
 		binaryTree.inOrder();
-		System.out.println(binaryTree.isHas(11));
-		System.out.println(binaryTree.isHas(4));
-		System.out.println(binaryTree.getParentNode(binaryTree.getNode(9)).data);
-		System.out.println(binaryTree.getLeftMaxNode(binaryTree.getNode(8)).data);
-		binaryTree.delete(2);
-		binaryTree.inOrder();
+		binaryTree.preOrder();
+		// System.out.println(binaryTree.isHas(11));
+		// System.out.println(binaryTree.isHas(4));
+		// System.out.println(binaryTree.getParentNode(binaryTree.getNode(9)).data);
+		// System.out.println(binaryTree.getLeftMaxNode(binaryTree.getNode(8)).data);
+		// binaryTree.delete(2);
+		// binaryTree.inOrder();
 	}
 
 }
